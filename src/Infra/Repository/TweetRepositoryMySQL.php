@@ -13,6 +13,11 @@ class TweetRepositoryMySQL implements TweetRepositoryContract {
 
     public function save(Tweet $tweet)
     {
-        // $this->db->execu....
+        $sql = 'INSERT INTO tweets (text, username, date) VALUES (:text, :username, :date)';
+        $this->db->execute($sql, [
+            'text' => $tweet->getText(),
+            'username' => $tweet->getTweetUserName(),
+            'date' => $tweet->getDate()
+        ]);
     }
 }
